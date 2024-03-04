@@ -1,0 +1,23 @@
+<div class="container">
+    <ng-container
+      *ngIf="dataSource?.data?.length; else noResult"
+    >
+      <app-generic-table
+        [pageIndex]="pageIndex"
+        [size]="size"
+        [totalElements]="totalElements"
+        [dataSource]="dataSource"
+        [displayedColumns]="displayedColumns"
+        [cellHeadTypes]="cellHeadTypes"
+        [hasSearch]="false"
+        [hasSelect]="false"
+        (emitChangePage)="changePage($event)"
+      ></app-generic-table>
+    </ng-container>
+    <ng-template #noResult>
+      <div class="body mt-24">
+        <span>{{ resultConstant.nessun_risultato | uppercase }}</span>
+      </div>
+    </ng-template>
+  </div>
+  

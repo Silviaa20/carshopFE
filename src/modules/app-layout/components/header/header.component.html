@@ -1,0 +1,46 @@
+<div class="calc-width">
+  <mat-toolbar color="accent">
+    <mat-toolbar-row>
+      <figure>
+        <img src="./../../../../../assets/images/logo-contrader-header.svg" />
+      </figure>
+      <span class="example-spacer"></span>
+      <div class="mr-12">
+        <!-- <app-lista-notifiche></app-lista-notifiche> -->
+      </div>
+      <div class="flex-items" [matMenuTriggerFor]="menu">
+        <div class="round-img-profile">
+          <div class="profile-avatar">
+            <p>
+              {{ (sessioneUtente.username | slice : 0 : 1 | uppercase) || ""
+              }}
+            </p>
+          </div>
+        </div>
+        <span
+          >
+          {{ sessioneUtente.username || ""  }}
+          </span
+        >
+        <button mat-icon-button class="example-icon">
+          <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu class="only-width account-menu" #menu="matMenu">
+          <!-- <button
+            class="bottom-border"
+            mat-menu-item
+            (click)="gotoEditAccount()"
+            *ngIf="!isAdmin"
+          >
+            <mat-icon>person_filled</mat-icon>
+            {{ labelConstant.profilo }}
+          </button> -->
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            {{ labelConstant.logout }}
+          </button>
+        </mat-menu>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

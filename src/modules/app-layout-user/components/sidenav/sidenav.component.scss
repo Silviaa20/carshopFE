@@ -1,0 +1,65 @@
+@import "../../../../../assets/scss/variables.scss";
+@import "../header/header.component.scss";
+
+mat-sidenav-container {
+  height: 100%;
+
+  mat-sidenav {
+    width: 296px;
+  }
+
+
+  mat-tree {
+    mat-icon {
+      color: $icon-color;
+    }
+
+    .tree-invisible {
+      display: none;
+    }
+
+    .tree-visible {
+      border-bottom: 1px solid $grey;
+    }
+
+    .tree ul,
+    .tree li {
+      margin-top: 0;
+      margin-bottom: 0;
+      list-style-type: none;
+    }
+
+    .margin {
+      margin: 17px;
+    }
+
+    .auto {
+      margin-left: auto;
+    }
+
+    mat-tree-node {
+      &.active {
+        background-color: $mat-hover;
+        mat-icon {
+          color: $active-sidenav-item
+
+        }
+      }
+    }
+
+    mat-nested-tree-node mat-tree-node {
+      padding-left: 44px;
+    }
+  }
+
+  .mat-tree-node {
+    border-bottom: 1px solid #00000029;
+
+    &:hover,
+    &:focus-visible {
+      background-color: $mat-hover;
+      cursor: pointer;
+    }
+  }
+
+}

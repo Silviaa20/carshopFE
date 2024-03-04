@@ -1,0 +1,65 @@
+@import "../../../../../assets/scss/variables.scss";
+@import "../header/header.component.scss";
+
+mat-sidenav-container {
+  height: calc(100vh - 208px);
+  padding: 24px;
+  padding-top: 0;
+  &.mat-drawer-container {
+    background-color: $bg-color;
+    // height: 80vh;
+  }
+
+  mat-sidenav-content {
+    height: 100%;
+    max-height: 95%;
+    width: 100%;
+
+    &.comunicazioni {
+      padding: 0;
+      height: 100%;
+      max-height: 100%;
+    }
+
+    &.mat-drawer-container {
+      overflow-x: hidden;
+    }
+  }
+}
+.calc-width {
+  width: calc(100% - 296px);
+}
+
+.app-body {
+  display: flex;
+}
+
+.right-side-container {
+  width: calc(100% - 296px);
+}
+
+.flex-items-container {
+  width: 100%;
+  .title-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .cta-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      @media (min-width: $lg-min) {
+        flex-direction: row;
+        gap: 24px;
+      }
+    }
+  }
+}
+
+.margin-top-32 {
+  margin-top: 32px;
+}
+

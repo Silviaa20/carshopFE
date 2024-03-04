@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="head">
+    <div class="w-100">
+      <img src="../../../assets/images/sm-logo.svg" alt="Contrader logo" />
+      <mat-icon class="close-icon" (click)="closeDialog()">close</mat-icon>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <form
+      class="form"
+      (ngSubmit)="submitForm()"
+      [formGroup]="inserimentoUtente"
+    >
+      <mat-form-field appearance="outline" color="accent">
+        <label for="username">User:</label>
+        <input
+          matInput
+          type="text"
+          id="username"
+          matInput
+          formControlName="username"
+          name="username"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="accent">
+        <label for="password">Password:</label>
+        <input
+          matInput
+          type="text"
+          id="password"
+          formControlName="password"
+          name="password"
+          required
+        />
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="outline" color="accent">
+          <label for="usertype">Usertype:</label>
+          <input
+            matInput
+            type="text"
+            id="usertype"
+            formControlName="usertype"
+            name="usertype"
+            required
+          />
+        </mat-form-field> -->
+
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Usertype</mat-label>
+          <input *ngIf="userSession.usertype==='user' || userSession.usertype==='admin'" matInput formControlName="usertype" [readonly]="true">
+          <mat-select *ngIf="userSession.usertype!=='user' && userSession.usertype!=='admin'" formControlName="usertype">
+              <mat-option *ngFor="let option of keys" [value]="option">
+                {{ types[option] }}
+              </mat-option>
+          </mat-select>
+         </mat-form-field>
+         
+      <button
+        matInput
+        type="submit"
+        mat-raised-button
+        color="primary"
+        class="button-action login c-button-large"
+      >
+        {{ isModifica ? "Modifica" : "Inserisci" }}
+      </button>
+    </form>
+  </div>
+</div>

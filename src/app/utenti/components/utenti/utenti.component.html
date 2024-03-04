@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="flex-items-container">
+    <div class="title-container">
+      <p class="title-content">
+        {{ title | setTextByUrl : dashboardConstant : "title" }}
+      </p>
+    </div>
+    <div class="cta-container">
+      <app-generic-button
+        [valore]="'Click Me'"
+        [disabled]="false"
+        (click)="onButtonClicks()"
+      ></app-generic-button>
+    </div>
+  </div>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

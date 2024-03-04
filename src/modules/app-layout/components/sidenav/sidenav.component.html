@@ -1,0 +1,49 @@
+<mat-sidenav-container>
+  <mat-sidenav disableClose mode="side" from="top" opened>
+    <mat-tree
+      [dataSource]="dataSource"
+      [treeControl]="treeControl"
+      class="tree"
+    >
+      <mat-tree-node
+        *matTreeNodeDef="let node"
+        matTreeNodeToggle
+        class="bottom-border"
+        (click)="gotoPage(node)"
+        [ngClass]="{ active: activeNode === node }"
+        tabindex="0"
+        (keydown.enter)="gotoPage(node)"
+      >
+        <mat-icon class="margin">{{ node.icon }}</mat-icon>
+        <span>{{ node.name }}</span>
+      </mat-tree-node>
+      <mat-nested-tree-node
+        matTreeNodeToggle
+        *matTreeNodeDef="let node; when: hasChild"
+        [ngClass]="{ active: activeNode === node }"
+      >
+        <div class="mat-tree-node">
+          <mat-icon class="margin">{{ node.icon }}</mat-icon>
+          <span>{{ node.name }}</span>
+          <button
+            mat-icon-button
+            [attr.aria-label]="'Toggle ' + node.name"
+            class="auto"
+          >
+            <mat-icon>
+              {{
+                treeControl.isExpanded(node) ? "expand_more" : "chevron_right"
+              }}
+            </mat-icon>
+          </button>
+        </div>
+        <div
+          [class.tree-invisible]="!treeControl.isExpanded(node)"
+          role="group"
+        >
+          <ng-container matTreeNodeOutlet></ng-container>
+        </div>
+      </mat-nested-tree-node>
+    </mat-tree>
+  </mat-sidenav>
+</mat-sidenav-container>

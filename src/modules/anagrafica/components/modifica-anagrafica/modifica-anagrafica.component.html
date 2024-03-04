@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="head">
+    <div class="w-100">
+      <img src="../../../assets/images/sm-logo.svg" alt="Contrader logo" />
+      <mat-icon class="close-icon" (click)="closeDialog()">close</mat-icon>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <form
+      class="form"
+      (ngSubmit)="submitForm()"
+      [formGroup]="modificaAnagrafica"
+    >
+      <mat-form-field appearance="outline" color="accent">
+        <label for="nome">Nome:</label>
+        <input
+          matInput
+          type="text"
+          id="nome"
+          formControlName="nome"
+          name="nome"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="accent">
+        <label for="cognome">Cognome:</label>
+        <input
+          matInput
+          type="text"
+          id="cognome"
+          matInput
+          formControlName="cognome"
+          name="cognome"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="accent">
+        <label for="indirizzo">Indirizzo:</label>
+        <input
+          matInput
+          type="text"
+          id="indirizzo"
+          matInput
+          formControlName="indirizzo"
+          name="indirizzo"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="accent">
+        <label for="luogoNascita">Luogo di Nascita:</label>
+        <input
+          matInput
+          type="text"
+          id="luogoNascita"
+          matInput
+          formControlName="luogoNascita"
+          name="luogoNascita"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="accent">
+        <label for="dataNascita">Data di Nascita:</label>
+        <input
+          matInput
+          type="date"
+          id="dataNascita"
+          matInput
+          formControlName="dataNascita"
+          name="dataNascita"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label for="">Utente</mat-label>
+        <input
+          *ngIf="
+            anagNotExist ||
+            userSession.usertype === 'USER' || userSession.usertype === 'admin'
+          "
+          matInput
+          [readonly]="true"
+          [value]="userName"
+        />
+        <input
+          *ngIf="
+            anagNotExist ||
+            userSession.usertype === 'USER' || userSession.usertype === 'admin'
+          "
+          matInput
+          formControlName="user"
+          style="display: none"
+        />
+        <mat-select
+          *ngIf="
+            !anagNotExist &&
+            userSession.usertype !== 'USER' && userSession.usertype !== 'admin'
+          "
+          formControlName="user"
+        >
+          <mat-option *ngFor="let option of userlist" [value]="option.id">
+            {{ option.username }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        matInput
+        type="submit"
+        mat-raised-button
+        color="primary"
+        class="button-action login c-button-large"
+      >
+        Modifica
+      </button>
+    </form>
+  </div>
+</div>

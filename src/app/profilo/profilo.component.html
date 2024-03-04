@@ -1,0 +1,74 @@
+<div class="container">
+    <ng-container
+    >     
+    <div class="table-container"> 
+       <table>
+        <tr>
+           <th colspan="5" class="large-text">CREDENZIALI</th>
+           <td colspan="6">
+            <button *ngFor="let action of actionCredenziali" (click)="action.callback()" mat-icon-button>
+              <mat-icon>{{ action.icon }}</mat-icon>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Username:</td>
+          <th>{{ uData?.username }}</th>
+       </tr>
+       <tr><br></tr>
+       <!-- <tr>
+          <td>Password:</td>
+          <th>{{ uData?.password }}</th>
+       </tr> -->
+       <tr><br></tr>
+       <tr>
+          <td>Ruolo:</td>
+          <th>{{ uData?.usertype |titlecase}}</th>
+       </tr>
+        
+      </table>
+      
+      <table><tr><br>     </tr><br></table>
+      <table>
+        <tr>
+          <th colspan="5" class="large-text">ANAGRAFICA</th>
+          <td colspan="6">
+           <button *ngFor="let action of actionAnagrafica" (click)="action.callback()" mat-icon-button>
+             <mat-icon>{{ action.icon }}</mat-icon>
+           </button>
+         </td>
+       </tr>
+        <tr>
+           <td>Nome:</td>
+           <th>{{ aData?.nome |titlecase}}</th>
+        </tr>
+        <tr><br></tr>
+        <tr>
+           <td>Cognome:</td>
+           <th>{{ aData?.cognome |titlecase}}</th>
+        </tr>
+        <tr><br></tr>
+        <tr>
+           <td>Indirizzo:</td>
+           <th>{{ aData?.indirizzo |titlecase}}</th>
+        </tr>
+        <tr><br></tr>
+        <tr>
+           <td>Luogo Nascita:</td>
+           <th>{{ aData?.luogoNascita |titlecase}}</th>
+        </tr>
+        <tr><br></tr>
+        <tr>
+           <td>Data Nascita:</td>
+           <th>{{ aData?.dataNascita}}</th>
+        </tr>
+       </table>
+       </div>
+    </ng-container>
+    <ng-template #noResult>
+      <div class="body mt-24">
+        <span>{{ resultConstant.nessun_risultato | uppercase }}</span>
+      </div>
+    </ng-template>
+  </div>
+  

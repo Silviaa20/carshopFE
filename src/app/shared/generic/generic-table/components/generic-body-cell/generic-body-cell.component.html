@@ -1,0 +1,110 @@
+<ng-container *ngIf="col === 'action' && element[col]?.length">
+  <div class="table-actions-container">
+    <ng-container *ngFor="let act of element[col]; let i = index">
+      <button
+        *ngIf="act.type === 'icon'"
+        mat-icon-button
+        disabled="{{ act.disabled ? act.disabled : false }}"
+        matTooltip="{{ act.title }}"
+        [attr.aria-label]="act.title"
+        (click)="act.callback && act.callback(element)"
+      >
+        <mat-icon
+          class="material-icons-outlined"
+          [class]="act.customIcon ? act.customIcon : ''"
+          [ngClass]="{ disabled: act.disabled }"
+        >
+          {{ act.icon ? act.icon : "" }}
+        </mat-icon>
+      </button>
+      <mat-divider
+        [vertical]="true"
+        *ngIf="i < element[col].length - 1"
+      ></mat-divider>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="bodyType?.type === 'button'">
+  <button
+    mat-stroked-button
+    class="button-outline-accent h-36 mb-12"
+    color="accent"
+    type="button"
+    (click)="bodyType?.callback(element.id)"
+  >
+    <span class="value">
+      {{ element[col] }}
+    </span>
+    <span>
+      {{ buttonConstant.visualizza }}
+    </span>
+  </button>
+</ng-container>
+
+<ng-container *ngIf="bodyType?.type === 'chip'">
+  <ng-container *ngIf="element[col]?.length; noChiplistElement">
+    <mat-chip-listbox
+      class="body-cell"
+      #chipList
+      [attr.aria-label]="chipListAriaLabel"
+      *ngIf="element[col].length"
+    >
+      <div class="chips-container" #chipsContainer>
+        <mat-chip-row
+          class="clamp-1"
+          [class]="chipClass"
+          *ngFor="let chip of chipListWithOnlyFirstThreeElement"
+        >
+          <span class="chip">
+            {{ chip }}
+          </span>
+        </mat-chip-row>
+        <button
+          mat-fab
+          class="chip-more"
+          color="accent"
+          type="button"
+          [attr.aria-label]="accessibilityConstant.show_more_element_of_list"
+          *ngIf="chipListHiddenNumber > 0"
+        >
+          +{{ chipListHiddenNumber }}
+        </button>
+      </div>
+    </mat-chip-listbox>
+  </ng-container>
+  <ng-template #noChiplistElement> - </ng-template>
+</ng-container>
+
+<ng-container *ngIf="col === 'select'">
+  <mat-checkbox
+    color="primary"
+    (click)="$event.stopPropagation()"
+    (change)="selected(element)"
+    [checked]="element.select"
+  >
+  </mat-checkbox>
+</ng-container>
+<ng-container *ngIf="col === 'richiesta_numero'">
+  <div class="flex">
+    <div
+      class="dot"
+      [ngClass]="element.stato === 'Nuova Richiesta' ? 'red' : ''"
+    ></div>
+    {{ element[col] || "-" }}
+  </div>
+</ng-container>
+
+<ng-container
+  *ngIf="
+    col !== 'action' &&
+    col !== 'richiesta_numero' &&
+    col !== 'select' &&
+    bodyType?.type !== 'button' &&
+    bodyType?.type !== 'chip'
+  "
+>
+  <span class="flex-cell">
+    {{ element[col] || "-" }}
+  </span>
+</ng-container>

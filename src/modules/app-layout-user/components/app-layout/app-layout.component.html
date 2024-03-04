@@ -1,0 +1,26 @@
+<div class="{{ theme }}-theme">
+  <app-header></app-header>
+  <div class="app-body">
+    <app-sidenav></app-sidenav>
+    <div class="calc-width">
+      <mat-toolbar-row class="secondary-row">
+        <div class="flex-items-container">
+          <div
+            class="flex-items"
+            tabindex="0"
+            (keydown.enter)="goBack()"
+            (click)="goBack()"
+          >
+            <mat-icon>chevron_left</mat-icon>
+            <span>{{ labelConstant.indietro }}</span>
+          </div>
+        </div>
+      </mat-toolbar-row>
+      <mat-sidenav-container>
+        <mat-sidenav-content class="{{ classToAdd }}">
+          <router-outlet></router-outlet>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </div>
+  </div>
+</div>

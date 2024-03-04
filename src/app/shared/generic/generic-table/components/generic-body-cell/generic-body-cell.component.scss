@@ -1,0 +1,81 @@
+@import "../../../../../../assets/scss/variables.scss";
+
+.table-actions-container {
+  display: flex;
+  overflow-x: auto;
+  align-items: center;
+  justify-content: flex-end;
+
+  .button-outline-accent {
+    width: 210px;
+  }
+
+  mat-divider {
+    height: 24px;
+  }
+}
+
+mat-icon {
+  color: $black;
+
+  &.disabled {
+    color: $black;
+    filter: opacity(0.1);
+  }
+}
+
+.flex-cell {
+  display: flex;
+  align-items: center;
+}
+
+button {
+  width: 135px;
+  .value {
+    margin-right: 8px;
+    min-width: 24px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #f0e6fd;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.chips-container {
+  display: flex;
+  position: relative;
+  width: 90%;
+
+  .chip-more {
+    position: absolute;
+    left: 100%;
+  }
+}
+
+mat-chip-listbox {
+  mat-chip-row {
+    height: 24px;
+    .chip {
+      @include text($font-12, 700, $black-grey, 14px, none);
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  .dot {
+    margin-right: 8px;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    &.red {
+      background-color: #d32f2f;
+    }
+  }
+}

@@ -1,0 +1,79 @@
+<div class="login-page">
+    <div class="login-image">
+      <img
+        class="img-pointer"
+        src="../../../../../assets/images/logo-contrader.svg"
+        alt="Logo"
+        (click)="navigateTo()"
+      />
+    </div>
+    <!-- <mat-icon class="close-icon" (click)="closeDialog()">close</mat-icon> -->
+    <div class="login-form-container">
+      <form class="login-form" [formGroup]="signinForm">
+        <p class="title">{{ labelConstant.registrati }}</p>
+        <p class="subtitle" [innerHTML]="labelConstant.crea_account"></p>
+
+
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>{{ inputConstant.username }}</mat-label>
+          <input
+            matInput
+            formControlName="username"
+            name="username"
+            autocomplete="username"
+          />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>{{ inputConstant.password }}</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            [type]="hide ? 'password' : 'text'"
+            autocomplete="new-password"
+            noEmoji
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+            type="button"
+          >
+            <mat-icon class="visibility-password">{{
+              hide ? "visibility" : "visibility_off"
+            }}</mat-icon>
+          </button>
+          <mat-error>{{
+            signinForm.controls['password'].hasError("required")
+              ? errorsConstant.required
+              : signinForm.controls['password'].hasError("minlength")
+              ? errorsConstant.input.min_length_8
+              : errorsConstant.input.max_length_64
+          }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Usertype</mat-label>
+          <mat-select formControlName="usertype">
+            <mat-option *ngFor="let option of keys" [value]="option">
+               {{ types[option] }}
+             </mat-option>
+          </mat-select>
+         </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="button-action login c-button-large"
+          [disabled]="signinForm.invalid"
+          (click)="onSubmit()"
+        >
+          {{ buttonConstant.registrati }}
+        </button>
+      </form>
+    </div>
+  
+ </div>
+  
